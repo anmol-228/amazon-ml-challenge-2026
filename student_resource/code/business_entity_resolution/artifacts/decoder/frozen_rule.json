@@ -1,0 +1,13 @@
+{
+  "family": "source_conf_size",
+  "alpha": 0.0,
+  "thresholds": [
+    0.44,
+    0.73,
+    0.76,
+    0.47,
+    0.67,
+    0.78
+  ],
+  "calibration": 0.981898560507834
+}

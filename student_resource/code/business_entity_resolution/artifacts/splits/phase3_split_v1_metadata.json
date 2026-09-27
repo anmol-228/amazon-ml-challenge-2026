@@ -1,0 +1,48 @@
+{
+  "seed": 42,
+  "fractions": {
+    "matcher_train": 0.7,
+    "dev_eval": 0.15,
+    "calibration_holdout": 0.15
+  },
+  "n_development_entities": 1765456,
+  "counts": {
+    "matcher_train": 1235818,
+    "calibration_holdout": 264819,
+    "dev_eval": 264819
+  },
+  "manifest_sha256": "32d16a8436af04fed3e2d0e81058da96c26d4ef8d8e670f109cc18bb3e66fa94",
+  "by_stratum_sample": {
+    "India|False|1": {
+      "calibration_holdout": 5696,
+      "dev_eval": 5696,
+      "matcher_train": 26582
+    },
+    "India|False|2+": {
+      "calibration_holdout": 94364,
+      "dev_eval": 94364,
+      "matcher_train": 440367
+    },
+    "India|True|0": {
+      "calibration_holdout": 5922,
+      "dev_eval": 5922,
+      "matcher_train": 27637
+    },
+    "US|False|1": {
+      "calibration_holdout": 8603,
+      "dev_eval": 8603,
+      "matcher_train": 40145
+    },
+    "US|False|2+": {
+      "calibration_holdout": 141366,
+      "dev_eval": 141366,
+      "matcher_train": 659706
+    },
+    "US|True|0": {
+      "calibration_holdout": 8868,
+      "dev_eval": 8868,
+      "matcher_train": 41381
+    }
+  },
+  "n_strata": 6
+}

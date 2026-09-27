@@ -1,0 +1,60 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Large local model/cache artifacts
+*.bin
+*.safetensors
+*.pt
+*.onnx
+model_cache/
+.cache/
+
+# Competition dataset and official resources (redistribution not permitted; see README)
+_source/
+_original_student_resource/
+student_resource/dataset/
+student_resource/output/
+student_resource/code/business_entity_resolution/output/
+student_resource/README.md
+student_resource/Documentation_template.md
+
+# Redundant with docs/research/ (same content, already published as browsable files)
+docs/research.zip
+
+# Local experiment workspace: large intermediates, per-submission scoring runs, review
+# transcripts. Every result and every exact reproduction command is preserved instead in
+# docs/EXPERIMENTS.md, docs/REPRODUCIBILITY.md, and the small shipped artifacts under
+# student_resource/code/business_entity_resolution/artifacts/.
+experiments/
+
+# Large staged/immutable submission snapshots (multi-GB; hashes and scores are recorded
+# in docs/EXPERIMENTS.md instead of publishing the raw files).
+submissions/
+
+# Internal working/coordination documents (competition-night process notes; not part of
+# the public project documentation). Their technical content is in docs/.
+DECISIONS.md
+PROJECT_STATE.md
+PROJECT_RULES.md
+SUBMISSION_LOG.md
+HANDOFF_*.md
+FINAL_40MIN_STATE.md
+POST_HACKATHON_CLEANUP_MANIFEST.md
