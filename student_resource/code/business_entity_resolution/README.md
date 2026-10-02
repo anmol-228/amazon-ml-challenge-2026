@@ -36,6 +36,24 @@ files are shipped in `artifacts/splits/` (SHA-256 in `artifacts/splits/SHA256SUM
 `<root>/experiments/splits/`. `scripts/build_phase3_split.py` rebuilds `phase3_split_v1.tsv` from
 `validation_v1.tsv` deterministically.
 
+### Stage-2 country slices
+
+Before model training, build the country lookup used by `stage2_lab.py` for
+held-out, per-country comparisons:
+
+```
+python -u scripts/build_judge_slices.py
+```
+
+Inputs are the shipped `artifacts/splits/phase3_split_v1.tsv` and original
+`<root>/student_resource/dataset/train/train_source1.tsv`. The output is
+`<root>/experiments/judge/slices.parquet`: one `dev_eval` entity per row,
+columns `s1_entity_id` and `country` (both strings), in frozen split order.
+It contains no predictions or labels and does not change model training,
+threshold selection or final decisions. Stage-2 aligns it by entity ID;
+historical row order is irrelevant. The command refuses to overwrite an
+existing output. On a fresh clone, run it once before step 4.
+
 ## 1. Name alias map (normalization v2, `src/normalization_v2.py`)
 
 NFKC + casefold + whitespace collapse; combining diacritics removed on Latin letters; business-name tokens in

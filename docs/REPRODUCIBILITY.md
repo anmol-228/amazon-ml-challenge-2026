@@ -58,6 +58,35 @@ matching_results.tsv (public macro F0.5 = 0.973462)
        also deterministically rebuildable from validation_v1.tsv via scripts/build_phase3_split.py (seed 42).
 ```
 
+## Stage-2 country-slice dependency
+
+From `student_resource/code/business_entity_resolution/`, after placing the
+original data and before the Stage-2 training commands, run:
+
+```
+python -u scripts/build_judge_slices.py
+```
+
+The tracked producer reads only:
+
+- shipped `artifacts/splits/phase3_split_v1.tsv` (`dev_eval` membership);
+- original `student_resource/dataset/train/train_source1.tsv` (`entity_id`, `country`).
+
+It writes `<root>/experiments/judge/slices.parquet`, with string columns
+`s1_entity_id`, `country`, in frozen split order. This is the deterministic
+chain: original Source-1 data + shipped split → country slices →
+`stage2_lab.py` held-out per-country comparison. Its `--ref m004_r3mix`
+comparison table is produced by the preceding `train_stage2.py` command.
+No additional unpublished input is needed for this comparison.
+
+The retained country-slice artifact was verified against these inputs: all
+264,819 entity IDs and country values match. Its historical row order differs
+from frozen split order; consumers explicitly reindex by entity ID, so this
+is semantically identical. Parquet byte identity with the historical file is
+not promised. This does not strengthen the LightGBM determinism guarantee.
+The producer refuses to overwrite an existing file; `--output <path>` permits
+verification in a separate location without changing retained evidence.
+
 ## Determinism caveat (not covered by the code README)
 
 `train_m003.py`/`train_stage2.py` fix `random_state`/seed values but run LightGBM with
